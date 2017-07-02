@@ -1,0 +1,63 @@
+#use <conio>
+
+choice bin {
+  <!choice bin> b0;
+  <!choice bin> b1;
+  < >           eps;
+};
+
+typedef <!choice bin> num;
+
+num $c zero() {
+  $c.eps;
+  close($c);
+}
+
+num $c inc(num $d) {
+  switch ($d) {
+    case b0: {
+      $c.b1;
+      $c = $d;
+    }
+    case b1: {
+      $c.b0;
+      $c = inc($d);
+    }
+    case eps: {
+      $c.b1;
+      $c.eps;
+      wait($d);
+      close($c);
+    }
+  }
+}
+
+void print_num(num $c) {
+  switch($c) {
+    case b0: {
+      print("0");
+      print_num($c);
+      return;
+    }
+    case b1: {
+      print("1");
+      print_num($c);
+      return;
+    }
+    case eps: {
+      wait($c);
+      print("0");
+      print("\n");
+      return;
+    }
+  }
+}
+
+int main() {
+  num $c0 = zero();
+  num $c1 = inc($c0);
+  num $c2 = inc($c1);
+  num $c3 = inc($c2);
+  print_num($c3);
+  return 0;
+}
