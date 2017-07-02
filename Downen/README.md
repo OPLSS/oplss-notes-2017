@@ -11,15 +11,11 @@ program. The topics covered are:
 
 ## Schedule
 
-| --------------------------- |
 | **Date**	 | **Topics**         |
 |--- | --- |
 | **June 23** | Lambda Calculus (2 lectures) |
 |    | Products and Sums |
 | |Operational semantics |
-| **June 24**	| Proof of Progress |
-| | Proof of Preservation |
-| | Recursive Types |
-| | Polymorphism |
+| **June 24**	| Proof of Progress and Proof of Preservation |
+| | Recursive Types  and Polymorphism |
 | June 25 | Encodings, Parametricity |
-| -------------- |
