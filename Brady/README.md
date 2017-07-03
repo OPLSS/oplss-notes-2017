@@ -1,4 +1,6 @@
+# Dependent Types in the Idris Programming Language -- Brady
 
+**Instructor:** Edwin Brady (University of St Andrews)
 
 
 ## Hands-on Idris
