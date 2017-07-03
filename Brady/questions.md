@@ -44,3 +44,24 @@ Lecture 2
 #### Is there a connection between `Dec` and the Law of the Excluded Middle?
 #### How can I learn about how Idris is implemented?
 
+Lecture 3
+---------
+
+#### What's your favourite undocumented feature of Idris?
+#### Could "covering" or "total" be default rather than "partial"?
+#### Where can we learn more about theorem proving in Idris?
+#### Can we do property based testing in Idris?
+#### Is it possible to extract to Haskell?
+#### Could you parameterise a type by whether it is infinite/lazy or not?
+#### What is the hardest/most annoying thing about implementing something like Idris?
+#### How do I use `.ipkg` files in Atom?
+#### When is the `case` in the type of `Open` evaluated?
+#### Is there documentation on pattern matching alternatives in do notation?  I want this in Haskell
+#### Could type-driven development work in a mainstream language like Java?
+#### Why are constructors scoped to the module and not the datatype?
+#### Is this idea of putting states in types related to Session Types?
+#### Is there a relationship between Prolog and dependent types and could you express state machines this way in Prolog?
+#### Can we do implicits like Force and Delay for other types?
+#### Do we have extensionality in Idris?
+#### How do you prove equivalence of functions? e.g. if you have `f : a -> b` and `g : a -> b` could it be possible to prove `f = g`
+#### Does the concrete representation of IO obey the monad laws?
