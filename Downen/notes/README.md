@@ -1101,3 +1101,36 @@ Typed Y combinator:
       Open_X.A = ΛZ.λp:Exist X.A.λf:∀X.A → Z.p Z f
 
       Reference: Girard, Proofs and Types
+
+
+
+## Hands-on Session on Parametricity
+Denotational semantics for types: 〚_〛: Type → Set of terms  
+
+Negative (based on how they behave, i.e. elimination):  
+
+〚A → B〛 = { M ∈ Term | ∀ N ∈ 〚A〛. M N ∈ 〚B〛}  
+〚A x B〛= { M ∈ Term | first M ∈ 〚A〛and second M ∈ 〚B〛}  
+
+Positive ( based on what they are, i.e. introduction ):  
+
+ Exp(̱̱C) = { M ∈ Term | M →* N and N ∈ C }  
+      (Side note: Closure under expansion for C, denoted as Exp(C), means if M ↦* N and N ∈ C, then M ∈ C.)  
+
+〚Bool〛= Exp ({True, False})
+      (Side note: For example, the term iszero 5 ∈ Exp{True, False}.)
+
+〚A + B〛= Exp ({inl M | M ∈ 〚A〛} ∪ { inr M | M ∈ 〚B〛})
+
+Fundamental Theorem (a.k.a. Adequacy Theorem): If · ⊢ M:A, then M ∈ 〚A〛. (i.e. "syntactic" correctness implies "semantic" correctness.)
+
+Corr. If · ⊢ M: Bool, then M ↦* True or M ↦* False.
+
+
+
+
+
+
+
+
+
