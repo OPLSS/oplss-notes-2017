@@ -37,7 +37,7 @@ theorems-ams-extended
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -61,10 +61,10 @@ theorems-ams-extended
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2.5cm
-\topmargin 2.5cm
-\rightmargin 2.5cm
-\bottommargin 2.5cm
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation skip
@@ -103,30 +103,34 @@ Details that I don't understand myself are highlighted in red.
 \end_layout
 
 \begin_layout Standard
-The property making parametricity possible in a language is a 
+Two ingredients make reasoning about parametricity possible in a programming
+ language.
+ The first ingredient is a mapping from the language's types to a set of
+ terms we consider to have the type.
+ (We'll call this a 
 \begin_inset Quotes eld
 \end_inset
 
-semantic correctness
+semantic interpretation
 \begin_inset Quotes erd
 \end_inset
 
- property called 
+ of a type, although I've just made the term up.) The twist here, though,
+ is to define the semantic interpretation of a type without using typing
+ judgments - no turnstile.
+ The second is a property of this semantic interpretation called 
 \emph on
 adequacy
 \emph default
-, linking terms of a type to the type's set of 
-\begin_inset Quotes eld
-\end_inset
+, showing (loosely) that terms with a type are in the type's semantic interpreta
+tion.
+ So we define semantic interpretations of types for for both STLC and System
+ F, and then show that these semantc interpretations are adequate.
+\end_layout
 
-semantically correct
-\begin_inset Quotes erd
-\end_inset
-
- terms.
- We show this adequacy property for both STLC and System F.
- We then show how applying the adequacy theorem for System F gives us the
- famous 
+\begin_layout Standard
+Afterwards, we show how the adequacy theorem for System F can be applied
+ to give us the famous 
 \begin_inset Quotes eld
 \end_inset
 
@@ -134,30 +138,12 @@ free theorems
 \begin_inset Quotes erd
 \end_inset
 
- constraining terms of a type.
- This reasoning that constrains terms of a type is what we call parametricity.
-\end_layout
-
-\begin_layout Standard
-(You have may have also heard of 
-\begin_inset Quotes eld
-\end_inset
-
-logical relations
-\begin_inset Quotes erd
-\end_inset
-
-, a method of stating properties in progamming languages.
- The idea behind 
-\emph on
-logical relations
-\emph default
- is to define a property desired of a language, by induction over the structure
- of types.)
+, which constrain terms of a type.
+ This reasoning that constrains terms of a type is, again, called parametricity.
 \end_layout
 
 \begin_layout Section
-Adequacy in the simply-typed 
+Semantic interpretations of types in the simply-typed 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -165,15 +151,8 @@ Adequacy in the simply-typed
 \end_layout
 
 \begin_layout Standard
-Before we define 
-\begin_inset Quotes eld
-\end_inset
-
-adequacy
-\begin_inset Quotes erd
-\end_inset
-
- for System F, we'll first need a utility definition.
+Before we define the semantic interpretation of types to sets of terms in
+ the STLC, we'll first need a utility definition.
 \end_layout
 
 \begin_layout Definition
@@ -207,7 +186,9 @@ expansion of a set of terms
 \end_layout
 
 \begin_layout Standard
-Perhaps the only real motivation of 
+This is a property we'll want the semantic interpretations of our types
+ to have.
+ Perhaps the real motivation of 
 \begin_inset Formula $\mathbf{Exp}\mathbb{\,C}$
 \end_inset
 
@@ -215,23 +196,7 @@ Perhaps the only real motivation of
 \end_layout
 
 \begin_layout Standard
-Next, we define the 
-\begin_inset Quotes eld
-\end_inset
-
-interpretation brackets
-\begin_inset Quotes erd
-\end_inset
-
- that map a particular type to its set of 
-\begin_inset Quotes eld
-\end_inset
-
-semantically correct
-\begin_inset Quotes erd
-\end_inset
-
- terms.
+Next, we define the semantic interpretations for type themselves.
  This is an example of a 
 \emph on
 logical relation
@@ -388,8 +353,11 @@ Now try to use
 \end_deeper
 \end_deeper
 \begin_layout Standard
-We can now define the adequacy property itself, connecting types to sets
- of semantic interpretations.
+We can now define the adequacy property of the semantic interpretation 
+\begin_inset Formula $\llbracket\_\rrbracket$
+\end_inset
+
+, showing that typed terms are in their type's semantic interpretations.
  This is a major theorem that we state for its applications, rather than
  its proof.
 \end_layout
@@ -397,7 +365,11 @@ We can now define the adequacy property itself, connecting types to sets
 \begin_layout Theorem
 
 \emph on
-(Adequacy of STLC.)
+(Adequacy of 
+\begin_inset Formula $\llbracket\_\rrbracket$
+\end_inset
+
+ for STLC.)
 \emph default
  If 
 \begin_inset Formula $\vdash M:A$
@@ -411,7 +383,7 @@ We can now define the adequacy property itself, connecting types to sets
 \end_layout
 
 \begin_layout Standard
-For concreteness, here is the adequacy theorem specialised on boolean terms.
+For concreteness, here is the adequacy theorem specialised for booleans.
  This gives us a hint of how adequacy constrains the terms of a type.
 \end_layout
 
@@ -440,17 +412,19 @@ For concreteness, here is the adequacy theorem specialised on boolean terms.
 \end_layout
 
 \begin_layout Standard
-As another example, here is a fact about 
-\begin_inset Formula $\llbracket A\to B\rrbracket$
-\end_inset
-
- .
- The following (partial) proof shows us how the inductive nature of 
+As example of how the inductive nature of the 
 \begin_inset Formula $\llbracket\_\rrbracket$
 \end_inset
 
- (and logical relations in general) works well with proofs by induction.
- 
+ mapping (and of logical relations in general) help us prove things, we
+ show that semantic interpretations of a type are closed under expansion.
+ We won't need this theorem in the STLC, but it becomes useful 
+\color red
+when showing adequacy of 
+\begin_inset Formula $\llbracket\_\rrbracket$
+\end_inset
+
+ in System F.
 \end_layout
 
 \begin_layout Fact
@@ -484,7 +458,8 @@ This property also holds for call-by-name evaluation.
 \end_inset
 
 .
- The reduction can be done in one step if call-by-value is assumed.
+ The reduction can be done in one step iif we use call-by-value reduction
+ rules.
 \end_layout
 
 \end_inset
@@ -793,12 +768,12 @@ The second case requires us to assume that
 \end_deeper
 \end_deeper
 \begin_layout Section
-Adequacy in System F
+Semantic interpretations of types in System F
 \end_layout
 
 \begin_layout Standard
-The extension of the adequacy property to System F requires a few more utility
- definitions.
+We need a few more utility definitions to extend our definition of a type's
+ semantic interpretation to System F requires a few more utility definitions.
  First, we will have much use for unary predicates on terms that are closed
  under reduction.
  We call these 
@@ -879,7 +854,7 @@ We use
 
 \begin_layout Standard
 We can now define the semantic interpretation of types in System F, before
- stating adequacy itself for System F.
+ stating adequacy itself for the semantic interpretation.
 \end_layout
 
 \begin_layout Definition
@@ -1012,7 +987,11 @@ The adequacy property for System F is then as follows:
 \begin_layout Theorem
 
 \emph on
-(Adequacy of System F.) 
+(Adequacy of 
+\begin_inset Formula $\llbracket\_\rrbracket_{\theta}$
+\end_inset
+
+ for System F.) 
 \emph default
 If 
 \begin_inset Formula $\vdash M:A$
@@ -1034,10 +1013,10 @@ Free theorems as applications of System F's adequacy
 \end_layout
 
 \begin_layout Standard
-Parametricity is the use of System F's adequacy property to constrain the
- types that can inhabit a term.
- In particular, when the adequacy property is stated for a specific term
- and with specific reducibility candidates, we get what are called 
+Parametricity is the use of adequacy theorems to constrain the types that
+ can inhabit a term.
+ By stating the adequacy property for a specific type and with specific
+ reducibility candidates, we get 
 \begin_inset Quotes eld
 \end_inset
 
